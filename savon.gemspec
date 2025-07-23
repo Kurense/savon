@@ -6,7 +6,6 @@ require "savon/version"
 Gem::Specification.new do |s|
   s.name = "savon"
   s.version = Savon::Version
-  s.date = Date.today.to_s
 
   s.authors = "Daniel Harrington"
   s.email = "me@rubiii.com"
