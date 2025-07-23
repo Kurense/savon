@@ -98,9 +98,9 @@ module Savon
     # Sets whether to use Savon::WSDL by a given +method+ name and returns the original method name
     # without exclamation marks.
     def soap_action_from(method)
-      @wsdl.enabled = !method.ends_with?("!")
+      @wsdl.enabled = !method.end_with?("!")
 
-      method.chop! if method.ends_with?("!")
+      method.chop! if method.end_with?("!")
       method.to_sym
     end
 

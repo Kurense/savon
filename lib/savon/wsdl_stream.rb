@@ -31,7 +31,7 @@ module Savon
 
       if @section == :binding && tag == "binding"
         # ensure that we are in an wsdl/soap namespace
-        @section = nil unless @namespaces[namespace].starts_with? "http://schemas.xmlsoap.org/wsdl/soap"
+        @section = nil unless @namespaces[namespace].start_with? "http://schemas.xmlsoap.org/wsdl/soap"
       end
 
       @section = tag.to_sym if Sections.include?(tag) && depth <= 2
@@ -50,7 +50,7 @@ module Savon
     # Reads namespace definitions from a given +attrs+ Hash.
     def read_namespaces(attrs)
       attrs.each do |key, value|
-        @namespaces[key.strip_namespace] = value if key.starts_with? "xmlns:"
+        @namespaces[key.strip_namespace] = value if key.start_with? "xmlns:"
       end
     end
 

@@ -26,18 +26,6 @@ class String
     str
   end
 
-  # Returns whether the String starts with a given +prefix+.
-  def starts_with?(prefix)
-    prefix = prefix.to_s
-    self[0, prefix.length] == prefix
-  end unless defined? starts_with?
-
-  # Returns whether the String ends with a given +suffix+.
-  def ends_with?(suffix)
-    suffix = suffix.to_s
-    self[-suffix.length, suffix.length] == suffix
-  end unless defined? ends_with?
-
   # Returns the String without namespace.
   def strip_namespace
     split(":").last
