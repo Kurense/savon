@@ -32,16 +32,16 @@ describe String do
 
   describe "start_with?" do
     it "should return whether it starts with a given suffix" do
-      "authenticate".start_with?("auth").should be_true
-      "authenticate".start_with?("cate").should be_false
+      "authenticate".start_with?("auth").should be_truthy
+      "authenticate".start_with?("cate").should be_falsey
     end
   end
 
   describe "end_with?" do
     it "should return whether it ends with a given suffix" do
-      "authenticate!".end_with?("!").should be_true
-      "authenticate".end_with?("cate").should be_true
-      "authenticate".end_with?("?").should be_false
+      "authenticate!".end_with?("!").should be_truthy
+      "authenticate".end_with?("cate").should be_truthy
+      "authenticate".end_with?("?").should be_falsey
     end
   end
 
@@ -62,11 +62,11 @@ describe String do
     end
 
     it "returns true for Strings matching 'true'" do
-      "true".map_soap_response.should be_true
+      "true".map_soap_response.should be_truthy
     end
 
     it "returns false for Strings matching 'false'" do
-      "false".map_soap_response.should be_false
+      "false".map_soap_response.should be_falsey
     end
 
     it "defaults to return the original value" do

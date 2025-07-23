@@ -4,7 +4,7 @@ describe Savon::Response do
   before { @response = Savon::Response.new http_response_mock }
 
   it "defaults to raises both Savon::SOAPFault and Savon::HTTPError" do
-    Savon::Response.raise_errors?.should be_true
+    Savon::Response.raise_errors?.should be_truthy
   end
 
   it "has both getter and setter for whether to raise errors (global setting)" do
@@ -43,11 +43,11 @@ describe Savon::Response do
     before { Savon::Response.raise_errors = false }
 
     it "does not return true in case the response seems to be ok" do
-      @response.soap_fault?.should_not be_true
+      @response.soap_fault?.should_not be_truthy
     end
 
     it "returns true in case of a SOAP fault" do
-      savon_response_with(:soap_fault).soap_fault?.should be_true
+      savon_response_with(:soap_fault).soap_fault?.should be_truthy
     end
 
     after { Savon::Response.raise_errors = true }
@@ -73,11 +73,11 @@ describe Savon::Response do
     before { Savon::Response.raise_errors = false }
 
     it "does not return true in case the response seems to be ok" do
-      @response.http_error?.should_not be_true
+      @response.http_error?.should_not be_truthy
     end
 
     it "returns true in case of an HTTP error" do
-      savon_response_with(:http_error).http_error?.should be_true
+      savon_response_with(:http_error).http_error?.should be_truthy
     end
 
     after { Savon::Response.raise_errors = true }
@@ -176,4 +176,3 @@ describe Savon::Response do
   end
 
 end
-

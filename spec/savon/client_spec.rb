@@ -5,12 +5,12 @@ describe Savon::Client do
 
   it "should be initialized with an endpoint String" do
     client = Savon::Client.new EndpointHelper.wsdl_endpoint
-    client.request.http.proxy?.should be_false
+    client.request.http.proxy?.should be_falsey
   end
 
   it "should accept a proxy URI via an optional Hash of options" do
     client = Savon::Client.new EndpointHelper.wsdl_endpoint, :proxy => "http://proxy"
-    client.request.http.proxy?.should be_true
+    client.request.http.proxy?.should be_truthy
     client.request.http.proxy_address == "http://proxy"
   end
 
@@ -29,11 +29,11 @@ describe Savon::Client do
 
   it "should respond to available SOAP actions while behaving as expected otherwise" do
     WSDLFixture.authentication(:operations).keys.each do |soap_action|
-      @client.respond_to?(soap_action).should be_true
+      @client.respond_to?(soap_action).should be_truthy
     end
 
-    @client.respond_to?(:object_id).should be_true
-    @client.respond_to?(:some_undefined_method).should be_false
+    @client.respond_to?(:object_id).should be_truthy
+    @client.respond_to?(:some_undefined_method).should be_falsey
   end
 
   it "should dispatch available SOAP calls via method_missing and return the Savon::Response" do
@@ -41,7 +41,7 @@ describe Savon::Client do
   end
 
   it "should disable the Savon::WSDL when passed a method with an exclamation mark" do
-    @client.wsdl.enabled?.should be_true
+    @client.wsdl.enabled?.should be_truthy
     [:operations, :namespace_uri, :soap_endpoint].each do |method|
       Savon::WSDL.any_instance.expects(method).never
     end
@@ -51,7 +51,7 @@ describe Savon::Client do
       soap.input.should == "authenticate"
     end
     response.should be_a(Savon::Response)
-    @client.wsdl.enabled?.should be_false
+    @client.wsdl.enabled?.should be_falsey
   end
 
   it "should raise a Savon::SOAPFault in case of a SOAP fault" do

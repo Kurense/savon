@@ -35,7 +35,7 @@ describe Savon::WSSE do
   end
 
   it "defaults to nil for whether to use WSSE digest (global setting)" do
-    Savon::WSSE.digest?.should be_false
+    Savon::WSSE.digest?.should be_falsey
   end
 
   it "has both getter and setter for whether to use WSSE digest (global setting)" do
@@ -62,7 +62,7 @@ describe Savon::WSSE do
   end
 
   it "defaults to nil for whether to use WSSE digest" do
-    @wsse.digest?.should be_false
+    @wsse.digest?.should be_falsey
   end
 
   it "has both getter and setter for whether to use WSSE digest" do
@@ -101,7 +101,7 @@ describe Savon::WSSE do
         @wsse.password = @password
         @wsse.digest = true
         header = @wsse.header
-  
+
         header.should include_security_namespaces
         header.should include(@username)
         header.should_not include(@password)
@@ -113,7 +113,7 @@ describe Savon::WSSE do
         @wsse.password = @password
         Savon::WSSE.digest = true
         header = @wsse.header
-  
+
         header.should include_security_namespaces
         header.should include(@username)
         header.should_not include(@password)
@@ -121,12 +121,20 @@ describe Savon::WSSE do
       end
     end
 
-    def include_security_namespaces
-      simple_matcher("include security namespaces") do |given|
-        given.should include(Savon::WSSE::WSENamespace)
-        given.should include(Savon::WSSE::WSUNamespace)
+      RSpec::Matchers.define :include_security_namespaces do
+        match do |actual|
+          actual.include?(Savon::WSSE::WSENamespace) &&
+          actual.include?(Savon::WSSE::WSUNamespace)
+        end
+
+        description do
+          "include security namespaces"
+        end
+
+        failure_message do |actual|
+          "expected #{actual} to include security namespaces (#{Savon::WSSE::WSENamespace} and #{Savon::WSSE::WSUNamespace})"
+        end
       end
-    end
   end
 
 end

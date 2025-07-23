@@ -1,9 +1,9 @@
 require "rake"
-require "spec"
+require "rspec"
 require "mocha"
 require "fakeweb"
 
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
   config.mock_with :mocha
 end
 

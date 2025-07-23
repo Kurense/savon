@@ -12,9 +12,9 @@ describe Savon::Request do
 
   it "has both getter and setter for whether to log (global setting)" do
     Savon::Request.log = true
-    Savon::Request.log?.should be_true
+    Savon::Request.log?.should be_truthy
     Savon::Request.log = false
-    Savon::Request.log?.should be_false
+    Savon::Request.log?.should be_falsey
   end
 
   it "defaults to use a Logger instance for logging" do

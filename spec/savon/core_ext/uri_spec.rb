@@ -4,11 +4,11 @@ describe URI::HTTP do
 
   describe "ssl?" do
     it "returns true for https URI's" do
-      URI("https://example.com").ssl?.should be_true
+      URI("https://example.com").ssl?.should be_truthy
     end
 
     it "returns false for non-https URI's" do
-      URI("http://example.com").ssl?.should be_false
+      URI("http://example.com").ssl?.should be_falsey
     end
 
     it "returns nil for invalid URI's without a scheme" do

@@ -4,7 +4,7 @@ require "spec/rake/verify_rcov"
 
 task :default => :spec
 
-Spec::Rake::SpecTask.new do |spec|
+RSpec::Core::RakeTask.new do |spec|
   spec.spec_files = FileList["spec/{savon}/**/*_spec.rb"]
   spec.spec_opts << "--color"
   spec.libs += ["lib", "spec"]
@@ -29,7 +29,7 @@ task :spec_integration do
 end
 
 desc "" # make this task invisible
-Spec::Rake::SpecTask.new(:run_integration_spec) do |spec|
+RSpec::Core::RakeTask.new(:run_integration_spec) do |spec|
   spec.spec_files = FileList["spec/{integration}/**/*_spec.rb"]
   spec.spec_opts << "--color"
   spec.libs += ["lib", "spec"]

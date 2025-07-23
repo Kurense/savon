@@ -36,7 +36,7 @@ describe Savon::SOAP do
 
   it "should contain a Regexp matching the xs:dateTime format" do
     Savon::SOAP::DateTimeRegexp.should be_a(Regexp)
-    (Savon::SOAP::DateTimeRegexp === "2012-03-22T16:22:33").should be_true
+    (Savon::SOAP::DateTimeRegexp === "2012-03-22T16:22:33").should be_truthy
   end
 
   it "should default to SOAP 1.1" do
@@ -199,4 +199,3 @@ describe Savon::SOAP do
     end
   end
 end
-

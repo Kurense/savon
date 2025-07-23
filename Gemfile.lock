@@ -1,0 +1,49 @@
+PATH
+  remote: .
+  specs:
+    savon (0.7.9)
+      builder (>= 2.1.2)
+      crack (>= 0.1.4)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    bigdecimal (3.2.2)
+    builder (3.3.0)
+    crack (1.0.0)
+      bigdecimal
+      rexml
+    diff-lcs (1.6.2)
+    fakeweb (1.3.0)
+    mocha (2.7.1)
+      ruby2_keywords (>= 0.0.5)
+    rake (13.3.0)
+    rexml (3.4.1)
+    rspec (3.13.1)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
+    rspec-core (3.13.5)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.5)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.5)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-support (3.13.4)
+    ruby2_keywords (0.0.5)
+
+PLATFORMS
+  arm64-darwin-24
+  ruby
+
+DEPENDENCIES
+  fakeweb (>= 1.2.7)
+  mocha (>= 0.9.7)
+  rake (>= 0.8.7)
+  rspec (>= 1.2.8)
+  savon!
+
+BUNDLED WITH
+   2.6.9

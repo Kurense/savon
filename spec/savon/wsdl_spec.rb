@@ -14,7 +14,7 @@ describe Savon::WSDL do
     end
 
     it "is enabled by default" do
-      @wsdl.enabled?.should be_true
+      @wsdl.enabled?.should be_truthy
     end
 
     it "has a getter for the namespace URI" do
@@ -33,11 +33,11 @@ describe Savon::WSDL do
 
     it "responds to SOAP actions while still behaving as usual otherwise" do
       WSDLFixture.authentication(:operations).keys.each do |soap_action|
-        @wsdl.respond_to?(soap_action).should be_true
+        @wsdl.respond_to?(soap_action).should be_truthy
       end
 
-      @wsdl.respond_to?(:object_id).should be_true
-      @wsdl.respond_to?(:some_undefined_method).should be_false
+      @wsdl.respond_to?(:object_id).should be_truthy
+      @wsdl.respond_to?(:some_undefined_method).should be_falsey
     end
 
     it "returns the raw WSDL document for to_s" do
@@ -83,17 +83,17 @@ describe Savon::WSDL do
 
   describe "a WSDL document from geotrust" do
     before { @wsdl = new_wsdl :geotrust }
-    
+
     it "returns the namespace URI" do
       @wsdl.namespace_uri.should == WSDLFixture.geotrust(:namespace_uri)
     end
-    
+
     it "returns an Array of available SOAP actions" do
       WSDLFixture.geotrust(:operations).keys.each do |soap_action|
         @wsdl.soap_actions.should include(soap_action)
       end
     end
-    
+
     it "returns a Hash of SOAP operations" do
       @wsdl.operations.should == WSDLFixture.geotrust(:operations)
     end
